@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Mmu.Mlazh.TfsProxy.Application.Areas.App.Dtos;
-using Mmu.Mlazh.TfsProxy.Application.Areas.App.Services;
+using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Dtos;
+using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Services;
 using Mmu.Mlazh.TfsProxy.AzureFunctions.Infrastructure.ServiceProvisioning;
 using Newtonsoft.Json;
 

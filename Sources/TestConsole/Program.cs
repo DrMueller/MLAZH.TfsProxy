@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
-using Mmu.Mlazh.TfsProxy.Application.Areas.App.Dtos;
-using Mmu.Mlazh.TfsProxy.Application.Areas.App.Services;
+using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Dtos;
+using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Services;
 using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Models;
 using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Services;
 using Mmu.Mlh.ApplicationExtensions.Areas.ServiceProvisioning;
@@ -12,7 +11,7 @@ namespace Mmu.Mlazh.TfsProxy.TestConsole
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             ContainerInitializationService.CreateInitializedContainer(
                 new AssemblyParameters(
@@ -24,27 +23,21 @@ namespace Mmu.Mlazh.TfsProxy.TestConsole
             Task.Run(
                 async () =>
                 {
-                    try
+                    var dto = new PatchWorkItemDto
                     {
-                        var dto = new PatchWorkItemDto
+                        Id = 156,
+                        Fields = new List<WorkItemFieldDto>
                         {
-                            Id = 156,
-                            Fields = new List<WorkItemFieldDto>
+                            new WorkItemFieldDto
                             {
-                                new WorkItemFieldDto
-                                {
-                                    Name = "Title",
-                                    Value = "Hello test"
-                                }
+                                Name = "Title",
+                                Value = "Hello test"
                             }
-                        };
+                        }
+                    };
 
-                        var itm = await workItemDtoDataService.PatchAsync(dto);
-                        Console.WriteLine(itm);
-                    }
-                    catch (Exception ex)
-                    {
-                    }
+                    var itm = await workItemDtoDataService.PatchAsync(dto);
+                    Console.WriteLine(itm);
                 });
 
             Console.WriteLine("Hello World!");
