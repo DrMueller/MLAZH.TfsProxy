@@ -18,7 +18,7 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Areas.Functions
         {
             var workItemDtoDataService = ProvisioningService.GetService<IWorkItemDtoDataService>();
 
-            //var tra = req.GetQueryParameterDictionary();
+            //// var tra = req.GetQueryParameterDictionary();
 
             var result = await workItemDtoDataService.LoadByIdAsync(150);
 

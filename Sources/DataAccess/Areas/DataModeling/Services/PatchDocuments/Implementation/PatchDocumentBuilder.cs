@@ -27,14 +27,14 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.Areas.DataModeling.Services.PatchDocumen
             return this;
         }
 
-        public IPatchDocumentBuilder AppendRelationOperation(string relation, string workItemUrl)
+        public IPatchDocumentBuilder AppendRelationOperation(string relation, string workItemPath)
         {
             const string FormattedPath = @"/relations/-";
 
             var workItemRelation = new PatchDocumentRelation
             {
                 Rel = relation,
-                Url = workItemUrl
+                Url = workItemPath
             };
 
             var patchDocument = new PatchDocument
