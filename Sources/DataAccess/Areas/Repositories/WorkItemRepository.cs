@@ -10,7 +10,7 @@ using Mmu.Mlh.LanguageExtensions.Areas.Collections;
 
 namespace Mmu.Mlazh.TfsProxy.DataAccess.Areas.Repositories
 {
-    internal class WorkItemRepository : IWorkItemRepository
+    public class WorkItemRepository : IWorkItemRepository
     {
         private readonly IWorkItemAdapter _nativeWorkitemAdapter;
         private readonly IPatchDocumentBuilderFactory _patchDocumentBuilderFactory;

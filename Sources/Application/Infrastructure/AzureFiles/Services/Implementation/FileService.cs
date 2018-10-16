@@ -16,7 +16,7 @@ namespace Mmu.Mlazh.TfsProxy.Application.Infrastructure.AzureFiles.Services.Impl
             var share = client.GetShareReference("mmu");
 
             var rootDir = share.GetRootDirectoryReference();
-            var fileRef = rootDir.GetFileReference("Testmmu");
+            var fileRef = rootDir.GetFileReference("Testmmu.txt");
             await fileRef.UploadTextAsync(text);
         }
     }

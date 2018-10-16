@@ -2,16 +2,16 @@
 using Mmu.Mlazh.TfsProxy.DataAccess.Areas.Repositories;
 using StructureMap;
 
-namespace Mmu.Mlazh.TfsProxy.DataAccess.Infrastructure.DependencyInjection
+namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Infrastructure.DependencyInjection
 {
-    public class DataAccessRegistry : Registry
+    public class AzureFunctionsRegistry : Registry
     {
-        public DataAccessRegistry()
+        public AzureFunctionsRegistry()
         {
             Scan(
                 scanner =>
                 {
-                    scanner.AssemblyContainingType<DataAccessRegistry>();
+                    scanner.AssemblyContainingType<AzureFunctionsRegistry>();
                     scanner.WithDefaultConventions();
                 });
 
