@@ -7,7 +7,6 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Dtos;
 using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Services;
-using Mmu.Mlazh.TfsProxy.Application.Infrastructure.AzureFiles.Services;
 using Mmu.Mlazh.TfsProxy.AzureFunctions.Infrastructure.ServiceProvisioning;
 using Newtonsoft.Json;
 
@@ -19,10 +18,6 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Areas.Functions
         public static async Task<IActionResult> GetWorkItemAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = "GetWorkItemById/{workItemId}")] HttpRequest req, ILogger logger, int workItemId)
         {
             var workItemDtoDataService = ProvisioningService.GetService<IWorkItemDtoDataService>();
-
-            var fileService = ProvisioningService.GetService<IFileService>();
-            await fileService.AppendAsync(workItemId.ToString());
-
             var result = await workItemDtoDataService.LoadByIdAsync(workItemId);
 
             return new OkObjectResult(result);

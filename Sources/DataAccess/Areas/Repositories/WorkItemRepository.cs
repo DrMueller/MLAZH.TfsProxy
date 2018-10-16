@@ -29,7 +29,7 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.Areas.Repositories
 
         public async Task<WorkItem> LoadByIdAsync(int id)
         {
-            var nativeWorkItem = await _restProxy.LoadByIdAsync(150);
+            var nativeWorkItem = await _restProxy.LoadByIdAsync(id);
             return _nativeWorkitemAdapter.Adapt(nativeWorkItem);
         }
 
