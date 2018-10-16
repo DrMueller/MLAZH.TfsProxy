@@ -17,8 +17,8 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Areas.Functions
 {
     public static class WorkItemFunctions
     {
-        private static string key = TelemetryConfiguration.Active.InstrumentationKey = System.Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY", EnvironmentVariableTarget.Process);
-        private static TelemetryClient telemetry = new TelemetryClient()
+        private static string key = TelemetryConfiguration.Active.InstrumentationKey = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY", EnvironmentVariableTarget.Process);
+        private static TelemetryClient telemetry = new TelemetryClient
         {
             InstrumentationKey = key
         };
