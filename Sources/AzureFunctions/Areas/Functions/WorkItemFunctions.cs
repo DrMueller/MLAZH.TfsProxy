@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.WebJobs.Host;
+using Microsoft.Build.Framework;
 using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Dtos;
 using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Services;
 using Mmu.Mlazh.TfsProxy.AzureFunctions.Infrastructure.ServiceProvisioning;
@@ -16,12 +18,12 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Areas.Functions
     public static class WorkItemFunctions
     {
         [FunctionName("GetWorkItemById")]
-        public static async Task<IActionResult> GetWorkItemAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req)
+        public static async Task<IActionResult> GetWorkItemAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req, TraceWriter logger)
         {
             var workItemDtoDataService = ProvisioningService.GetService<IWorkItemDtoDataService>();
 
-            Debug.WriteLine("Tra Debug");
-            Console.WriteLine("Tra Console");
+            logger.Info("Tra");
+
             //// var tra = req.GetQueryParameterDictionary();
 
             var result = await workItemDtoDataService.LoadByIdAsync(150);
