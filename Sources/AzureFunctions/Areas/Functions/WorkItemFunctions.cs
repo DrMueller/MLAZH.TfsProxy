@@ -1,5 +1,3 @@
-using System;
-using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -7,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
-using Microsoft.Build.Framework;
 using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Dtos;
 using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Services;
 using Mmu.Mlazh.TfsProxy.AzureFunctions.Infrastructure.ServiceProvisioning;
@@ -23,6 +20,7 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Areas.Functions
             var workItemDtoDataService = ProvisioningService.GetService<IWorkItemDtoDataService>();
 
             logger.Info("Tra");
+            logger.Warning("Here is a warning log message");
 
             //// var tra = req.GetQueryParameterDictionary();
 
