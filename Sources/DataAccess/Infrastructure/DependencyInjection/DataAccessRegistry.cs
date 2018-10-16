@@ -1,4 +1,5 @@
-﻿using Mmu.Mlazh.TfsProxy.Application.Areas.Domain.Repositories;
+﻿using System.Diagnostics;
+using Mmu.Mlazh.TfsProxy.Application.Areas.Domain.Repositories;
 using Mmu.Mlazh.TfsProxy.DataAccess.Areas.Repositories;
 using StructureMap;
 
@@ -15,6 +16,7 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.Infrastructure.DependencyInjection
                     scanner.WithDefaultConventions();
                 });
 
+            Debug.WriteLine("In DataAccessRegistry");
             For<IWorkItemRepository>().Use<WorkItemRepository>();
         }
     }

@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +20,8 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Areas.Functions
         {
             var workItemDtoDataService = ProvisioningService.GetService<IWorkItemDtoDataService>();
 
+            Debug.WriteLine("Tra Debug");
+            Console.WriteLine("Tra Console");
             //// var tra = req.GetQueryParameterDictionary();
 
             var result = await workItemDtoDataService.LoadByIdAsync(150);
