@@ -38,10 +38,10 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Areas.Functions
         public static async Task<IActionResult> PostWorkItemAsync([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req)
         {
             var requestBody = new StreamReader(req.Body).ReadToEnd();
-            var patchWorkItemDto = JsonConvert.DeserializeObject<PatchWorkItemDto>(requestBody);
+            var postWorkItemDto = JsonConvert.DeserializeObject<PostWorkItemDto>(requestBody);
             var workItemDtoDataService = ProvisioningService.GetService<IWorkItemDtoDataService>();
 
-            var result = await workItemDtoDataService.PatchAsync(patchWorkItemDto);
+            var result = await workItemDtoDataService.PostAsync(postWorkItemDto);
             return new OkObjectResult(result);
         }
     }
