@@ -12,7 +12,8 @@ namespace Mmu.Mlazh.TfsProxy.Application.Areas.Domain.Models
         public long Revision { get; }
         public Uri Url { get; }
 
-        public WorkItem(int id,
+        public WorkItem(
+            int id,
             long revision,
             Uri url,
             IReadOnlyCollection<WorkItemRelation> relations,

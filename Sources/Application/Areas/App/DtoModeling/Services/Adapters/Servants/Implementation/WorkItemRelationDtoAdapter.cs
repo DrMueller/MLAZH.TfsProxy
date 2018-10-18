@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Dtos;
 using Mmu.Mlazh.TfsProxy.Application.Areas.Domain.Models;
@@ -15,7 +14,7 @@ namespace Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Services.Adapters
                 return new List<WorkItemRelation>();
             }
 
-            return dtos.Select(f => new WorkItemRelation(new Uri(f.TargetWorkItemUrl), f.RelationTypeDescription)).ToList();
+            return dtos.Select(f => new WorkItemRelation(f.TargetWorkItemId, f.RelationTypeDescription)).ToList();
         }
     }
 }

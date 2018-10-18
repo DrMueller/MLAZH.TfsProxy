@@ -7,8 +7,10 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.Areas.DataModeling.Services.WorkItems
 {
     public interface ITfsWorkItemRestProxy
     {
+        Task<NativeWorkItem> LoadByIdAsync(int workItemId);
+
         Task<NativeWorkItem> PatchAsync(int workItemId, IReadOnlyCollection<PatchDocument> patchDocuments);
 
-        Task<NativeWorkItem> LoadByIdAsync(int workItemId);
+        Task<NativeWorkItem> PostASync(string workItemTypeName, IReadOnlyCollection<PatchDocument> patchDocuments);
     }
 }

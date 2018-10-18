@@ -8,5 +8,7 @@ namespace Mmu.Mlazh.TfsProxy.Application.Areas.Domain.Repositories
         Task<WorkItem> LoadByIdAsync(int id);
 
         Task<WorkItem> PatchAsync(PatchWorkItem patchWorkItem);
+
+        Task<WorkItem> PostAsync(PostWorkItem postWorkItem);
     }
 }

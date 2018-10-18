@@ -7,7 +7,7 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.Areas.DataModeling.Services.PatchDocumen
     {
         IPatchDocumentBuilder AppendAddFieldOperation(string fieldPath, object fieldValue);
 
-        IPatchDocumentBuilder AppendRelationOperation(string relation, string workItemPath);
+        IPatchDocumentBuilder AppendRelationOperation(string relation, int targetWorkItemId);
 
         IReadOnlyCollection<PatchDocument> Build();
     }

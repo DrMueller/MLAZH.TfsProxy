@@ -1,4 +1,5 @@
-﻿using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Models;
+﻿using Mmu.Mlazh.TfsProxy.Dependencies;
+using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Models;
 using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Services;
 using Mmu.Mlh.ApplicationExtensions.Areas.ServiceProvisioning;
 
@@ -23,6 +24,7 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Infrastructure.ServiceProvisioning
                 {
                     if (!_isInitialized)
                     {
+                        DependenciesProvider.ProvideDependencencies();
                         ContainerInitializationService.CreateInitializedContainer(new AssemblyParameters(typeof(ProvisioningService).Assembly, "Mmu.Mlazh"));
                         _isInitialized = true;
                     }

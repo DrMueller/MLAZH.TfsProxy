@@ -1,37 +1,42 @@
 ﻿using System.Threading.Tasks;
 using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Dtos;
-using Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Services.Adapters;
+using Mmu.Mlazh.TfsProxy.Application.Areas.Domain.Models;
 using Mmu.Mlazh.TfsProxy.Application.Areas.Domain.Repositories;
+using Mmu.Mlh.ApplicationExtensions.Areas.Adapters.Services;
 
 namespace Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Services.Implementation
 {
     public class WorkItemDtoDataService : IWorkItemDtoDataService
     {
-        private readonly IPatchWorkItemDtoAdapter _patchWorkitemDtoAdapter;
-        private readonly IWorkItemDtoAdapter _workitemDtoAdapter;
+        private readonly IAdapterResolver _adapterResolver;
         private readonly IWorkItemRepository _workItemRepository;
 
         public WorkItemDtoDataService(
             IWorkItemRepository workItemRepository,
-            IWorkItemDtoAdapter workitemDtoAdapter,
-            IPatchWorkItemDtoAdapter patchWorkitemDtoAdapter)
+            IAdapterResolver adapterResolver)
         {
             _workItemRepository = workItemRepository;
-            _workitemDtoAdapter = workitemDtoAdapter;
-            _patchWorkitemDtoAdapter = patchWorkitemDtoAdapter;
+            _adapterResolver = adapterResolver;
         }
 
         public async Task<WorkItemDto> LoadByIdAsync(int id)
         {
             var model = await _workItemRepository.LoadByIdAsync(id);
-            return _workitemDtoAdapter.Adapt(model);
+            return _adapterResolver.ResolveByAdapteeTypes<WorkItemDto, WorkItem>().Adapt(model);
         }
 
         public async Task<WorkItemDto> PatchAsync(PatchWorkItemDto dto)
         {
-            var patchWorkitem = _patchWorkitemDtoAdapter.Adapt(dto);
+            var patchWorkitem = _adapterResolver.ResolveByAdapteeTypes<PatchWorkItemDto, PatchWorkItem>().Adapt(dto);
             var returnedWorkitem = await _workItemRepository.PatchAsync(patchWorkitem);
-            return _workitemDtoAdapter.Adapt(returnedWorkitem);
+            return _adapterResolver.ResolveByAdapteeTypes<WorkItemDto, WorkItem>().Adapt(returnedWorkitem);
+        }
+
+        public async Task<WorkItemDto> PostAsync(PostWorkItemDto dto)
+        {
+            var postWorkItem = _adapterResolver.ResolveByAdapteeTypes<PostWorkItemDto, PostWorkItem>().Adapt(dto);
+            var returnedWorkItem = await _workItemRepository.PostAsync(postWorkItem);
+            return _adapterResolver.ResolveByAdapteeTypes<WorkItemDto, WorkItem>().Adapt(returnedWorkItem);
         }
     }
 }

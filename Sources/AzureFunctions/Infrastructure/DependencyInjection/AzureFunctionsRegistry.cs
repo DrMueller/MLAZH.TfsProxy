@@ -1,6 +1,4 @@
-﻿using Mmu.Mlazh.TfsProxy.Application.Areas.Domain.Repositories;
-using Mmu.Mlazh.TfsProxy.DataAccess.Areas.Repositories;
-using StructureMap;
+﻿using StructureMap;
 
 namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Infrastructure.DependencyInjection
 {
@@ -14,8 +12,6 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Infrastructure.DependencyInjection
                     scanner.AssemblyContainingType<AzureFunctionsRegistry>();
                     scanner.WithDefaultConventions();
                 });
-
-            For<IWorkItemRepository>().Use<WorkItemRepository>();
         }
     }
 }

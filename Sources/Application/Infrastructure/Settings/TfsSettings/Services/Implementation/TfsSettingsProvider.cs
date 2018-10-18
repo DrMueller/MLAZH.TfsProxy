@@ -8,7 +8,8 @@ namespace Mmu.Mlazh.TfsProxy.Application.Infrastructure.Settings.TfsSettings.Ser
         {
             return new Models.TfsSettings
             {
-                TfsBaseProjectPath = new Uri("https://drmueller.visualstudio.com/Fun%20Project/"),
+                TfsBaseOrganisationPath = new Uri("https://drmueller.visualstudio.com/"),
+                TfsProjectName = "Fun%20Project",
                 BasicAuthToken = "fmhkiljkf4ytev5werumffujgs7ofczm7x5kinwghta7kddpdlpq"
             };
         }

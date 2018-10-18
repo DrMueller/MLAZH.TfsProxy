@@ -8,5 +8,7 @@ namespace Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Services
         Task<WorkItemDto> LoadByIdAsync(int id);
 
         Task<WorkItemDto> PatchAsync(PatchWorkItemDto dto);
+
+        Task<WorkItemDto> PostAsync(PostWorkItemDto dto);
     }
 }

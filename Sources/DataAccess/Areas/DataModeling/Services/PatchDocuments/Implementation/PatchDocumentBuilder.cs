@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Mmu.Mlazh.TfsProxy.Application.Infrastructure.Settings.TfsSettings.Models;
+using Mmu.Mlazh.TfsProxy.Application.Infrastructure.Settings.TfsSettings.Services;
 using Mmu.Mlazh.TfsProxy.DataAccess.Areas.DataModeling.Models.PatchDocuments;
 
 namespace Mmu.Mlazh.TfsProxy.DataAccess.Areas.DataModeling.Services.PatchDocuments.Implementation
@@ -6,9 +8,11 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.Areas.DataModeling.Services.PatchDocumen
     public class PatchDocumentBuilder : IPatchDocumentBuilder
     {
         private readonly List<PatchDocument> _patchDocuments;
+        private readonly TfsSettings _tfsSettings;
 
-        public PatchDocumentBuilder()
+        public PatchDocumentBuilder(ITfsSettingsProvider tfsSettingsProvider)
         {
+            _tfsSettings = tfsSettingsProvider.ProvideTfsSettings();
             _patchDocuments = new List<PatchDocument>();
         }
 
@@ -27,14 +31,14 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.Areas.DataModeling.Services.PatchDocumen
             return this;
         }
 
-        public IPatchDocumentBuilder AppendRelationOperation(string relation, string workItemPath)
+        public IPatchDocumentBuilder AppendRelationOperation(string relation, int targetWorkItemId)
         {
             const string FormattedPath = @"/relations/-";
 
             var workItemRelation = new PatchDocumentRelation
             {
                 Rel = relation,
-                Url = workItemPath
+                Url = CreateWorkItemPath(targetWorkItemId)
             };
 
             var patchDocument = new PatchDocument
@@ -51,6 +55,11 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.Areas.DataModeling.Services.PatchDocumen
         public IReadOnlyCollection<PatchDocument> Build()
         {
             return _patchDocuments;
+        }
+
+        private string CreateWorkItemPath(int targetWorkItemId)
+        {
+            return string.Concat(_tfsSettings.TfsBaseProjectPath, $"_apis/wit/workItems/{targetWorkItemId}");
         }
     }
 }

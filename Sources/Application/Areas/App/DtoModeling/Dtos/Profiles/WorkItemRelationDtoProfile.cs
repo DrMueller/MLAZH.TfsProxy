@@ -9,7 +9,7 @@ namespace Mmu.Mlazh.TfsProxy.Application.Areas.App.DtoModeling.Dtos.Profiles
         {
             CreateMap<WorkItemRelation, WorkItemRelationDto>()
                 .ForMember(d => d.RelationTypeDescription, c => c.MapFrom(f => f.RelationTypeDescription))
-                .ForMember(d => d.TargetWorkItemUrl, c => c.MapFrom(f => f.TargetWorkItemUrl));
+                .ForMember(d => d.TargetWorkItemId, c => c.MapFrom(f => f.TargetWorkItemId));
         }
     }
 }

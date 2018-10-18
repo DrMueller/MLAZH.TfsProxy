@@ -24,7 +24,18 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Areas.Functions
         }
 
         [FunctionName("PatchWorkItem")]
-        public static async Task<IActionResult> PatchWorkItemsAsync([HttpTrigger(AuthorizationLevel.Function, "patch", Route = null)] HttpRequest req)
+        public static async Task<IActionResult> PatchWorkItemAsync([HttpTrigger(AuthorizationLevel.Function, "patch", Route = null)] HttpRequest req)
+        {
+            var requestBody = new StreamReader(req.Body).ReadToEnd();
+            var patchWorkItemDto = JsonConvert.DeserializeObject<PatchWorkItemDto>(requestBody);
+            var workItemDtoDataService = ProvisioningService.GetService<IWorkItemDtoDataService>();
+
+            var result = await workItemDtoDataService.PatchAsync(patchWorkItemDto);
+            return new OkObjectResult(result);
+        }
+
+        [FunctionName("PostWorkItem")]
+        public static async Task<IActionResult> PostWorkItemAsync([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req)
         {
             var requestBody = new StreamReader(req.Body).ReadToEnd();
             var patchWorkItemDto = JsonConvert.DeserializeObject<PatchWorkItemDto>(requestBody);

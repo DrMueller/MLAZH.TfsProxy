@@ -2,17 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Features>IOperation</Features>
-    <CodeAnalysisRuleSet>..\..\CA_ProductionCode.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Mmu.Mlh.RestExtensions" Version="2.0.1" />
-    <PackageReference Include="StructureMap" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Mmu.Mlazh.TfsProxy.Application.csproj" />
+    <ProjectReference Include="..\DataAccess\Mmu.Mlazh.TfsProxy.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

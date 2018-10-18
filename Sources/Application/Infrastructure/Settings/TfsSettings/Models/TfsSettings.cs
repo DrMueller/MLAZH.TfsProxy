@@ -4,8 +4,9 @@ namespace Mmu.Mlazh.TfsProxy.Application.Infrastructure.Settings.TfsSettings.Mod
 {
     public class TfsSettings
     {
-        public Uri TfsBaseProjectPath { get; set; }
-
         public string BasicAuthToken { get; set; }
+        public Uri TfsBaseOrganisationPath { get; set; }
+        public Uri TfsBaseProjectPath => new Uri(TfsBaseOrganisationPath, TfsProjectName);
+        public string TfsProjectName { get; set; }
     }
 }
