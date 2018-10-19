@@ -1,4 +1,4 @@
-﻿using Mmu.Mlazh.TfsProxy.DataAccess.Infrastructure.DependencyInjection;
+﻿using Mmu.Mlazh.TfsProxy.DataAccess.Common.Infrastructure.DependencyInjection;
 
 namespace Mmu.Mlazh.TfsProxy.Dependencies
 {
