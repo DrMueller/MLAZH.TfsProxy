@@ -25,6 +25,7 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.WorkItems.Functions
 
             var result = await workItemDtoDataService.LoadByIdsAsync(workitemIdsSplitted);
 
+
             return new OkObjectResult(result);
         }
     }
