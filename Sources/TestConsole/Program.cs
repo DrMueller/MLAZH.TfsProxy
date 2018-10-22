@@ -1,6 +1,4 @@
 ﻿using Mmu.Mlazh.TfsProxy.Dependencies;
-using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Models;
-using Mmu.Mlh.ApplicationExtensions.Areas.DependencyInjection.Services;
 
 namespace Mmu.Mlazh.TfsProxy.TestConsole
 {
@@ -8,12 +6,6 @@ namespace Mmu.Mlazh.TfsProxy.TestConsole
     {
         private static void Main()
         {
-            DependenciesProvider.ProvideDependencencies();
-            ContainerInitializationService.CreateInitializedContainer(
-                new AssemblyParameters(
-                    typeof(Program).Assembly,
-                    "Mmu.Mlazh"));
-
             ConsoleCommansContainer.Start();
         }
     }

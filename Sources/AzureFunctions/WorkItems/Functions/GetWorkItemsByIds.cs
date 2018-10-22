@@ -8,6 +8,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Mmu.Mlazh.TfsProxy.Application.WorkItems.Areas.App.DtoModeling.Services;
 using Mmu.Mlazh.TfsProxy.AzureFunctions.Common.Infrastructure.ServiceProvisioning;
+using Mmu.Mlazh.TfsProxy.Dependencies;
 
 namespace Mmu.Mlazh.TfsProxy.AzureFunctions.WorkItems.Functions
 {
@@ -16,7 +17,8 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.WorkItems.Functions
         [FunctionName("GetWorkItemsByIds")]
         public static async Task<IActionResult> GetAsync([HttpTrigger(AuthorizationLevel.Function, "post", Route = "GetWorkItemsById/workItemIds")] HttpRequest req, ILogger logger, string workItemIds)
         {
-            var workItemDtoDataService = ProvisioningService.GetService<IWorkItemDtoDataService>();
+            DependenciesProvider.ProvideDependencencies();
+            var workItemDtoDataService = AppProvisioningService.GetService<IWorkItemDtoDataService>();
 
             var workitemIdsSplitted = workItemIds
                 .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)

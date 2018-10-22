@@ -7,6 +7,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Mmu.Mlazh.TfsProxy.Application.Builds.App.DtoModeling.Services;
 using Mmu.Mlazh.TfsProxy.AzureFunctions.Common.Infrastructure.ServiceProvisioning;
+using Mmu.Mlazh.TfsProxy.Dependencies;
 
 namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Builds.Functions
 {
@@ -17,10 +18,11 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Builds.Functions
         {
             try
             {
-                var workItemDtoDataService = ProvisioningService.GetService<IBuildChangeDtoDataService>();
-                //var result = await workItemDtoDataService.LoadByBuildIdAsync(buildId);
+                DependenciesProvider.ProvideDependencencies();
+                var workItemDtoDataService = AppProvisioningService.GetService<IBuildChangeDtoDataService>();
+                var result = await workItemDtoDataService.LoadByBuildIdAsync(buildId);
 
-                return new OkObjectResult("Tra");
+                return new OkObjectResult(result);
             }
             catch (Exception ex)
             {

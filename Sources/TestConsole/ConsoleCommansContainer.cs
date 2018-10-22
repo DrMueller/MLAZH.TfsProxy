@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Mmu.Mlh.ApplicationExtensions.Areas.ServiceProvisioning;
+using Mmu.Mlazh.TfsProxy.TestConsole.Common.Infrastructure.ServiceProvisioning;
 using Mmu.Mlh.LanguageExtensions.Areas.Collections;
 
 namespace Mmu.Mlazh.TfsProxy.TestConsole
@@ -12,7 +12,7 @@ namespace Mmu.Mlazh.TfsProxy.TestConsole
 
         public static void Start()
         {
-            _commands = ProvisioningServiceSingleton.Instance
+            _commands = AppProvisioningService
                 .GetAllServices<IConsoleCommand>()
                 .OrderBy(f => f.Key)
                 .ToList();
