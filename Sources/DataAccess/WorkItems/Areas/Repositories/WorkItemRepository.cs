@@ -21,8 +21,7 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.Repositories
         public WorkItemRepository(
             IWorkItemRestProxy restProxy,
             IPatchDocumentBuilderFactory patchDocumentBuilderFactory,
-            IAdapterResolver adapterResolver
-        )
+            IAdapterResolver adapterResolver)
         {
             _restProxy = restProxy;
             _patchDocumentBuilderFactory = patchDocumentBuilderFactory;

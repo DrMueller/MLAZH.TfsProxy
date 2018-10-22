@@ -24,7 +24,7 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Builds.Functions
             }
             catch (Exception ex)
             {
-                return new BadRequestObjectResult(ex);
+                return new ObjectResult(ex);
             }
         }
     }

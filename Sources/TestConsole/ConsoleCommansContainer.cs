@@ -30,11 +30,11 @@ namespace Mmu.Mlazh.TfsProxy.TestConsole
             var command = _commands.FirstOrDefault(f => f.Key == keyInfo.Key);
             if (command == null)
             {
-                Console.WriteLine($"No Command for { keyInfo.Key } found !");
+                Console.WriteLine($"No Command for {keyInfo.Key} found !");
                 ListenForInputs();
             }
 
-            Console.WriteLine($"Executing { keyInfo.Key } ..");
+            Console.WriteLine($"Executing {keyInfo.Key} ..");
             command.ExecuteAsync();
 
             ListenForInputs();
