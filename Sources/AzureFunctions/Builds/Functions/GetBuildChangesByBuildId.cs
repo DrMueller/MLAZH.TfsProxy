@@ -18,9 +18,9 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Builds.Functions
             try
             {
                 var workItemDtoDataService = ProvisioningService.GetService<IBuildChangeDtoDataService>();
-                var result = await workItemDtoDataService.LoadByBuildIdAsync(buildId);
+                //var result = await workItemDtoDataService.LoadByBuildIdAsync(buildId);
 
-                return new OkObjectResult(result);
+                return new OkObjectResult("Tra");
             }
             catch (Exception ex)
             {
