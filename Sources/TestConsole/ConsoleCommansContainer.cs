@@ -12,7 +12,11 @@ namespace Mmu.Mlazh.TfsProxy.TestConsole
 
         public static void Start()
         {
-            _commands = ProvisioningServiceSingleton.Instance.GetAllServices<IConsoleCommand>();
+            _commands = ProvisioningServiceSingleton.Instance
+                .GetAllServices<IConsoleCommand>()
+                .OrderBy(f => f.Key)
+                .ToList();
+
             ListenForInputs();
         }
 
@@ -21,15 +25,16 @@ namespace Mmu.Mlazh.TfsProxy.TestConsole
             ShowCommands();
             Console.WriteLine();
 
-            var keyInfo = Console.ReadKey();
+            var keyInfo = Console.ReadKey(true);
 
             var command = _commands.FirstOrDefault(f => f.Key == keyInfo.Key);
             if (command == null)
             {
-                Console.WriteLine("No Command found !");
+                Console.WriteLine($"No Command for { keyInfo.Key } found !");
+                ListenForInputs();
             }
 
-            Console.WriteLine("Executing..");
+            Console.WriteLine($"Executing { keyInfo.Key } ..");
             command.ExecuteAsync();
 
             ListenForInputs();
