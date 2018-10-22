@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -14,10 +15,17 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Builds.Functions
         [FunctionName("GetBuildChangesByBuildId")]
         public static async Task<IActionResult> GetAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = "GetBuildChangesByBuildId/{buildId}")] HttpRequest req, ILogger logger, long buildId)
         {
-            var workItemDtoDataService = ProvisioningService.GetService<IBuildChangeDtoDataService>();
-            var result = await workItemDtoDataService.LoadByBuildIdAsync(buildId);
+            try
+            {
+                var workItemDtoDataService = ProvisioningService.GetService<IBuildChangeDtoDataService>();
+                var result = await workItemDtoDataService.LoadByBuildIdAsync(buildId);
 
-            return new OkObjectResult(result);
+                return new OkObjectResult(result);
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex);
+            }
         }
     }
 }
