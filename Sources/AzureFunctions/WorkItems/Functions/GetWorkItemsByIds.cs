@@ -16,7 +16,7 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.WorkItems.Functions
     public static class GetWorkItemsByIds
     {
         [FunctionName("GetWorkItemsByIds")]
-        public static async Task<IActionResult> GetAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = "GetWorkItemsById")] HttpRequest req, ILogger logger)
+        public static async Task<IActionResult> GetAsync([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequest req, ILogger logger)
         {
             try
             {
