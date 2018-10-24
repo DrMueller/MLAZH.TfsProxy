@@ -12,6 +12,7 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Builds.Functions
 {
     public static class GetBuildChangesByBuildId
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", Justification = "Needed by the Framework")]
         [FunctionName("GetBuildChangesByBuildId")]
         public static Task<IActionResult> GetAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = "GetBuildChangesByBuildId/{buildId}")] HttpRequest req, ILogger logger, long buildId)
         {

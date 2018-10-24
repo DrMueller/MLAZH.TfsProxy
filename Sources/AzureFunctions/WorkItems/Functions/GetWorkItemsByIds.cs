@@ -14,6 +14,7 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.WorkItems.Functions
 {
     public static class GetWorkItemsByIds
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", Justification = "Needed by the Framework")]
         [FunctionName("GetWorkItemsByIds")]
         public static Task<IActionResult> GetAsync([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequest req, ILogger logger)
         {

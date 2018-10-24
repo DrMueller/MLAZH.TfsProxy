@@ -15,6 +15,7 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.WorkItems.Functions
 {
     public static class PostWorkItem
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", Justification = "Needed by the Framework")]
         [FunctionName("PostWorkItem")]
         public static Task<IActionResult> PostAsync([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req, ILogger logger)
         {

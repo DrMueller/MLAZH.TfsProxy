@@ -16,6 +16,7 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.WorkItems.Functions
 {
     public static class PatckWorkItem
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", Justification = "Needed by the Framework")]
         [FunctionName("PatchWorkItem")]
         public static Task<IActionResult> PatchAsync([HttpTrigger(AuthorizationLevel.Function, "patch", Route = null)] HttpRequest req, ILogger logger)
         {
