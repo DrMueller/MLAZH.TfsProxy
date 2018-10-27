@@ -8,18 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2" />
+    <PackageReference Include="Mmu.Mlazh.AzureApplicationExtensions" Version="1.0.4" />
     <PackageReference Include="Mmu.Mlh.Adapters" Version="1.0.3" />
     <PackageReference Include="Mmu.Mlh.DomainExtensions" Version="2.0.6" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\..\..\..\..\..\Users\matthias.mueller\.nuget\packages\automapper\7.0.1\lib\netstandard2.0\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="Mmu.Mlazh.AzureApplicationExtensions">
-      <HintPath>..\..\..\..\..\..\Users\matthias.mueller\.nuget\packages\mmu.mlazh.azureapplicationextensions\1.0.1\lib\netstandard2.0\Mmu.Mlazh.AzureApplicationExtensions.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
