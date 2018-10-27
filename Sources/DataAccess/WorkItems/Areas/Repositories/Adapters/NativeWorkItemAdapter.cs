@@ -3,7 +3,7 @@ using System.Linq;
 using AutoMapper;
 using Mmu.Mlazh.TfsProxy.Application.WorkItems.Areas.Domain.Models;
 using Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.DataModeling.Models.WorkItems;
-using Mmu.Mlh.ApplicationExtensions.Areas.Adapters.Services;
+using Mmu.Mlh.Adapters.Areas.Services;
 
 namespace Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.Repositories.Adapters
 {

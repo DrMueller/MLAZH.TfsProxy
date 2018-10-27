@@ -1,4 +1,4 @@
-﻿using Mmu.Mlh.ApplicationExtensions.Areas.Adapters.Services;
+﻿using Mmu.Mlh.Adapters.Areas.Services;
 using StructureMap;
 
 namespace Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.DependencyInjection

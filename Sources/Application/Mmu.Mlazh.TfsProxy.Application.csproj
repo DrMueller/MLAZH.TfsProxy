@@ -8,7 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2" />
-    <PackageReference Include="Mmu.Mlh.ApplicationExtensions" Version="2.0.37" />
+    <PackageReference Include="Mmu.Mlh.Adapters" Version="1.0.3" />
+    <PackageReference Include="Mmu.Mlh.DomainExtensions" Version="2.0.5" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
 

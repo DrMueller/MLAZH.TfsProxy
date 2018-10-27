@@ -5,7 +5,7 @@ using Mmu.Mlazh.TfsProxy.Application.Builds.Domain.Models;
 using Mmu.Mlazh.TfsProxy.Application.Builds.Domain.Repositories;
 using Mmu.Mlazh.TfsProxy.DataAccess.Builds.Areas.DataModeling.Models;
 using Mmu.Mlazh.TfsProxy.DataAccess.Builds.Areas.DataModeling.Services;
-using Mmu.Mlh.ApplicationExtensions.Areas.Adapters.Services;
+using Mmu.Mlh.Adapters.Areas.Services;
 
 namespace Mmu.Mlazh.TfsProxy.DataAccess.Builds.Areas.Repositories
 {

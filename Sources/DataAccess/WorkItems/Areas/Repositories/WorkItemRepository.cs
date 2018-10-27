@@ -7,7 +7,7 @@ using Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.DataModeling.Models.PatchDoc
 using Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.DataModeling.Models.WorkItems;
 using Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.DataModeling.Services.PatchDocuments;
 using Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.DataModeling.Services.WorkItems;
-using Mmu.Mlh.ApplicationExtensions.Areas.Adapters.Services;
+using Mmu.Mlh.Adapters.Areas.Services;
 using Mmu.Mlh.LanguageExtensions.Areas.Collections;
 
 namespace Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.Repositories

@@ -1,7 +1,7 @@
 ﻿using Mmu.Mlazh.TfsProxy.Application.WorkItems.Areas.Domain.Repositories;
 using Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.DataModeling.Services.PatchDocuments;
 using Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.Repositories;
-using Mmu.Mlh.ApplicationExtensions.Areas.Adapters.Services;
+using Mmu.Mlh.Adapters.Areas.Services;
 using StructureMap;
 
 namespace Mmu.Mlazh.TfsProxy.DataAccess.Common.Infrastructure.DependencyInjection

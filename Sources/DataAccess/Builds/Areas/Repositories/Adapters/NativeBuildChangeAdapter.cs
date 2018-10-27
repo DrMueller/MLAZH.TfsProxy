@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Mmu.Mlazh.TfsProxy.Application.Builds.Domain.Models;
 using Mmu.Mlazh.TfsProxy.DataAccess.Builds.Areas.DataModeling.Models;
-using Mmu.Mlh.ApplicationExtensions.Areas.Adapters.Services;
+using Mmu.Mlh.Adapters.Areas.Services;
 
 namespace Mmu.Mlazh.TfsProxy.DataAccess.Builds.Areas.Repositories.Adapters
 {
