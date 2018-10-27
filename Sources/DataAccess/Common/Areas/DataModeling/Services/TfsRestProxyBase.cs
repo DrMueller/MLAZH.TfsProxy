@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.TfsSettings.Models;
-using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.TfsSettings.Services;
+using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.Models;
+using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.Providers;
 using Mmu.Mlh.RestExtensions.Areas.Models;
 using Mmu.Mlh.RestExtensions.Areas.Models.Security;
 using Mmu.Mlh.RestExtensions.Areas.RestProxies;
@@ -23,7 +23,7 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.Common.Areas.DataModeling.Services
         public async Task<string> PostAsync(string resourcePath, object payload)
         {
             var str = await _restProxy.PerformCallAsync<string>(
-                cb => cb.StartBuilding(_tfsSettings.TfsBaseProjectPath, RestCallMethodType.Post)
+                cb => cb.StartBuilding(_tfsSettings.GetTfsBaseProjectPath(), RestCallMethodType.Post)
                     .WithResourcePath(resourcePath)
                     .WithBody(new RestCallBody(payload, "application/json-patch+json"))
                     .WithSecurity(RestSecurity.CreateBasicAuthentication(string.Empty, _tfsSettings.BasicAuthToken))
@@ -35,7 +35,7 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.Common.Areas.DataModeling.Services
         protected async Task<string> GetAsync(string resourcePath)
         {
             var str = await _restProxy.PerformCallAsync<string>(
-                cb => cb.StartBuilding(_tfsSettings.TfsBaseProjectPath)
+                cb => cb.StartBuilding(_tfsSettings.GetTfsBaseProjectPath())
                     .WithResourcePath(resourcePath)
                     .WithSecurity(RestSecurity.CreateBasicAuthentication(string.Empty, _tfsSettings.BasicAuthToken))
                     .Build());
@@ -46,7 +46,7 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.Common.Areas.DataModeling.Services
         protected async Task<string> PatchAsync(string resourcePath, object payload)
         {
             var str = await _restProxy.PerformCallAsync<string>(
-                cb => cb.StartBuilding(_tfsSettings.TfsBaseProjectPath, RestCallMethodType.Patch)
+                cb => cb.StartBuilding(_tfsSettings.GetTfsBaseProjectPath(), RestCallMethodType.Patch)
                     .WithResourcePath(resourcePath)
                     .WithBody(new RestCallBody(payload, "application/json-patch+json"))
                     .WithSecurity(RestSecurity.CreateBasicAuthentication(string.Empty, _tfsSettings.BasicAuthToken))

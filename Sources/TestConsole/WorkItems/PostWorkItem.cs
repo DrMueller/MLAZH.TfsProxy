@@ -1,58 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Mmu.Mlazh.TfsProxy.Application.WorkItems.Areas.App.DtoModeling.Dtos;
 using Mmu.Mlazh.TfsProxy.Application.WorkItems.Areas.App.DtoModeling.Services;
-using Mmu.Mlh.ApplicationExtensions.Areas.ServiceProvisioning;
+using Mmu.Mlh.ConsoleExtensions.Areas.Commands.Models;
 using Newtonsoft.Json;
 
 namespace Mmu.Mlazh.TfsProxy.TestConsole.WorkItems
 {
     public class PostWorkItem : IConsoleCommand
     {
+        private readonly IWorkItemDtoDataService _workItemDtoDataService;
         public string Description { get; } = "Post Workitem";
         public ConsoleKey Key { get; } = ConsoleKey.D2;
 
+        public PostWorkItem(IWorkItemDtoDataService workItemDtoDataService)
+        {
+            _workItemDtoDataService = workItemDtoDataService;
+        }
+
         public async Task ExecuteAsync()
         {
-            try
+            var dto = new PostWorkItemDto
             {
-                var workItemDtoDataService = ProvisioningServiceSingleton.Instance.GetService<IWorkItemDtoDataService>();
-                var dto = new PostWorkItemDto
+                WorkItemTypeName = "Release",
+                Fields = new List<WorkItemFieldDto>
                 {
-                    WorkItemTypeName = "Release",
-                    Fields = new List<WorkItemFieldDto>
+                    new WorkItemFieldDto
                     {
-                        new WorkItemFieldDto
-                        {
-                            Name = "Title",
-                            Value = "Hello Release"
-                        },
-                        new WorkItemFieldDto
-                        {
-                            Name = "Custom.Version",
-                            Value = "1.2.3"
-                        }
+                        Name = "Title",
+                        Value = "Hello Release"
                     },
-                    Relations = new List<WorkItemRelationDto>
+                    new WorkItemFieldDto
                     {
-                        new WorkItemRelationDto
-                        {
-                            RelationTypeDescription = "System.LinkTypes.Hierarchy-Reverse",
-                            TargetWorkItemId = 150
-                        }
+                        Name = "Custom.Version",
+                        Value = "1.2.3"
                     }
-                };
+                },
+                Relations = new List<WorkItemRelationDto>
+                {
+                    new WorkItemRelationDto
+                    {
+                        RelationTypeDescription = "System.LinkTypes.Hierarchy-Reverse",
+                        TargetWorkItemId = 150
+                    }
+                }
+            };
 
-                var itm = await workItemDtoDataService.PostAsync(dto);
-                Console.WriteLine(JsonConvert.SerializeObject(itm));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                Debugger.Break();
-            }
+            var itm = await _workItemDtoDataService.PostAsync(dto);
+            Console.WriteLine(JsonConvert.SerializeObject(itm));
         }
     }
 }

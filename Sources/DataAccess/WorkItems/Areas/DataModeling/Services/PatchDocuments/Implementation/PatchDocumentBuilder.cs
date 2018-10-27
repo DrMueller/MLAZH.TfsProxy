@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.TfsSettings.Models;
-using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.TfsSettings.Services;
+using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.Models;
+using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.Providers;
 using Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.DataModeling.Models.PatchDocuments;
 
 namespace Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.DataModeling.Services.PatchDocuments.Implementation
@@ -59,7 +59,7 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.DataModeling.Services.Pa
 
         private string CreateWorkItemPath(int targetWorkItemId)
         {
-            return string.Concat(_tfsSettings.TfsBaseProjectPath, $"_apis/wit/workItems/{targetWorkItemId}");
+            return string.Concat(_tfsSettings.GetTfsBaseProjectPath(), $"_apis/wit/workItems/{targetWorkItemId}");
         }
     }
 }

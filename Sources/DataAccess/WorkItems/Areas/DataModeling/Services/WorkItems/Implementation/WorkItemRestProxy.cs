@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.TfsSettings.Services;
+using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.Providers;
 using Mmu.Mlazh.TfsProxy.DataAccess.Common.Areas.DataModeling.Services;
 using Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.DataModeling.Models.PatchDocuments;
 using Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.DataModeling.Models.WorkItems;

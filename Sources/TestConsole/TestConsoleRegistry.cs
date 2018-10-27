@@ -1,4 +1,5 @@
-﻿using StructureMap;
+﻿using Mmu.Mlh.ConsoleExtensions.Areas.Commands.Models;
+using StructureMap;
 
 namespace Mmu.Mlazh.TfsProxy.TestConsole
 {
@@ -13,8 +14,6 @@ namespace Mmu.Mlazh.TfsProxy.TestConsole
                     scanner.AddAllTypesOf<IConsoleCommand>();
                     scanner.WithDefaultConventions();
                 });
-
-            For<IConsoleCommand>().Singleton();
         }
     }
 }

@@ -1,24 +1,26 @@
-﻿using System.IO;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Mmu.Mlazh.AzureApplicationExtensions.Areas.AzureFunctionExecution.Services;
+using Mmu.Mlazh.AzureApplicationExtensions.Areas.AzureFunctionExecution;
 using Mmu.Mlazh.TfsProxy.Application.WorkItems.Areas.App.DtoModeling.Dtos;
 using Mmu.Mlazh.TfsProxy.Application.WorkItems.Areas.App.DtoModeling.Services;
-using Mmu.Mlazh.TfsProxy.Dependencies;
+using Mmu.Mlazh.TfsProxy.AzureFunctions.Common;
 using Newtonsoft.Json;
 
 namespace Mmu.Mlazh.TfsProxy.AzureFunctions.WorkItems.Functions
 {
     public static class PostWorkItem
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", Justification = "Needed by the Framework")]
+        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", Justification = "Needed by the Framework")]
         [FunctionName("PostWorkItem")]
         public static Task<IActionResult> PostAsync([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req, ILogger logger)
         {
+            InitService.Init();
             return AzureFunctionExecutionContext.ExecuteAsync<IWorkItemDtoDataService>(
                 async service =>
                 {
@@ -27,9 +29,7 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.WorkItems.Functions
 
                     var result = await service.PostAsync(postWorkItemDto);
                     return new OkObjectResult(result);
-                },
-                typeof(PostWorkItem).Assembly,
-                DependenciesProvider.ProvideDependencencies);
+                });
         }
     }
 }

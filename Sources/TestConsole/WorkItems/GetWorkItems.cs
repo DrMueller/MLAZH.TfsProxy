@@ -1,30 +1,26 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Mmu.Mlazh.TfsProxy.Application.WorkItems.Areas.App.DtoModeling.Services;
-using Mmu.Mlh.ApplicationExtensions.Areas.ServiceProvisioning;
+using Mmu.Mlh.ConsoleExtensions.Areas.Commands.Models;
 using Newtonsoft.Json;
 
 namespace Mmu.Mlazh.TfsProxy.TestConsole.WorkItems
 {
     public class GetWorkItems : IConsoleCommand
     {
+        private readonly IWorkItemDtoDataService _workItemDtoDataService;
         public string Description { get; } = "Get Workitems by IDs";
         public ConsoleKey Key { get; } = ConsoleKey.D4;
 
+        public GetWorkItems(IWorkItemDtoDataService workItemDtoDataService)
+        {
+            _workItemDtoDataService = workItemDtoDataService;
+        }
+
         public async Task ExecuteAsync()
         {
-            try
-            {
-                var workItemDtoDataService = ProvisioningServiceSingleton.Instance.GetService<IWorkItemDtoDataService>();
-                var itms = await workItemDtoDataService.LoadByIdsAsync(118, 156, 178);
-                Console.WriteLine(JsonConvert.SerializeObject(itms));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                Debugger.Break();
-            }
+            var itms = await _workItemDtoDataService.LoadByIdsAsync(118, 156, 178);
+            Console.WriteLine(JsonConvert.SerializeObject(itms));
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.TfsSettings.Services;
+using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.Providers;
 using Mmu.Mlazh.TfsProxy.DataAccess.Builds.Areas.DataModeling.Models;
 using Mmu.Mlazh.TfsProxy.DataAccess.Builds.Areas.DataModeling.Services.Adapters;
 using Mmu.Mlazh.TfsProxy.DataAccess.Common.Areas.DataModeling.Services;

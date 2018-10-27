@@ -8,7 +8,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.23" />
-    <PackageReference Include="Mmu.Mlazh.AzureApplicationExtensions" Version="1.0.1" />
+    <PackageReference Include="Mmu.Mlazh.AzureApplicationExtensions" Version="1.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
@@ -25,4 +25,5 @@
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
   </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/cirrus" /></VisualStudio></ProjectExtensions>
 </Project>

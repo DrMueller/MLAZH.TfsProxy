@@ -1,4 +1,10 @@
-﻿using Mmu.Mlazh.TfsProxy.Dependencies;
+﻿using System.Threading.Tasks;
+using Mmu.Mlazh.AzureApplicationExtensions.Areas.AzureAppInitialization.Services;
+using Mmu.Mlazh.TfsProxy.Application.Common.Infrastructure.Settings.Models;
+using Mmu.Mlazh.TfsProxy.Dependencies;
+using Mmu.Mlh.ConsoleExtensions.Areas.Commands.Services;
+using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models;
+using Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services;
 
 namespace Mmu.Mlazh.TfsProxy.TestConsole
 {
@@ -6,7 +12,17 @@ namespace Mmu.Mlazh.TfsProxy.TestConsole
     {
         private static void Main()
         {
-            ConsoleCommansContainer.Start();
+            var currentAssembly = typeof(Program).Assembly;
+            var containerConfig = ContainerConfiguration.CreateFromAssembly(
+                currentAssembly,
+                initializeAutoMapper: true,
+                logInitialization: true);
+
+            InitializationService.AssureServicesAreInitialized(containerConfig, DependenciesProvider.ProvideDependencencies);
+            InitializationService.AssureSettingsAreInitialized<AppSettings>(AppSettings.Sectionkey, currentAssembly);
+
+            var commandsContainer = ServiceLocatorSingleton.Instance.GetService<IConsoleCommandsContainer>();
+            Task.WaitAll(commandsContainer.ShowCommands());
         }
     }
 }
