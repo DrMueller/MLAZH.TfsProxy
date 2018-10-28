@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Mmu.Mlazh.TfsProxy.AzureFunctions.Builds.Functions;
 using Mmu.Mlh.ConsoleExtensions.Areas.Commands.Models;
