@@ -1,0 +1,67 @@
+resources:
+- repo: self
+queue:
+  name: Hosted VS2017
+variables:
+  BuildConfiguration: 'Release'
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+
+    projects: '**/*.csproj'
+
+    vstsFeed: '3c2d9c9a-d8f7-42f4-b7a3-dddf4064110a'
+
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build - Warnings as Errors'
+  inputs:
+    projects: '**/*.csproj'
+
+    arguments: '--configuration $(BuildConfiguration) /p:TreatWarningsAsErrors="true"'
+
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+
+    projects: '*/*Tests/*.csproj'
+
+    arguments: '--configuration $(BuildConfiguration)'
+
+
+- task: DotNetCoreCLI@2
+  displayName: Publish
+  inputs:
+    command: publish
+
+    publishWebProjects: false
+
+    projects: '**/AzureFunctions/*.csproj'
+
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)  /p:DeleteExistingFiles=True'
+
+    zipAfterPublish: false
+
+    modifyOutputPath: false
+
+
+- task: ArchiveFiles@2
+  displayName: Archive
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+
+    includeRootFolder: false
+
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Zip/$(Build.BuildId).zip'
+
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/Zip'
+
+
