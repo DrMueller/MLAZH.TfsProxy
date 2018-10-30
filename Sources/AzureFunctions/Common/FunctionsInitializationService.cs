@@ -6,11 +6,11 @@ using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models;
 
 namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Common
 {
-    public static class InitService
+    public static class FunctionsInitializationService
     {
-        private static Assembly _currentAssembly = typeof(InitService).Assembly;
+        private static Assembly _currentAssembly = typeof(FunctionsInitializationService).Assembly;
 
-        public static void Init()
+        public static void Initialize()
         {
             var containerConfig = ContainerConfiguration.CreateFromAssembly(
                 _currentAssembly,

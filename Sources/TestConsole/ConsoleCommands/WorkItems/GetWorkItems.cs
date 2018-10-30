@@ -4,7 +4,7 @@ using Mmu.Mlazh.TfsProxy.Application.WorkItems.Areas.App.DtoModeling.Services;
 using Mmu.Mlh.ConsoleExtensions.Areas.Commands.Models;
 using Newtonsoft.Json;
 
-namespace Mmu.Mlazh.TfsProxy.TestConsole.WorkItems
+namespace Mmu.Mlazh.TfsProxy.TestConsole.ConsoleCommands.WorkItems
 {
     public class GetWorkItems : IConsoleCommand
     {

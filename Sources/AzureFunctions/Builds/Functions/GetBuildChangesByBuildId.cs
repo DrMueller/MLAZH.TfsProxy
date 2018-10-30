@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Mmu.Mlazh.AzureApplicationExtensions.Areas.AzureFunctionExecution;
+using Mmu.Mlazh.AzureApplicationExtensions.Areas.AzureFunctions.Context;
 using Mmu.Mlazh.TfsProxy.Application.Builds.App.DtoModeling.Services;
 using Mmu.Mlazh.TfsProxy.AzureFunctions.Common;
 
@@ -17,7 +17,7 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Builds.Functions
         [FunctionName("GetBuildChangesByBuildId")]
         public static Task<IActionResult> GetAsync([HttpTrigger(AuthorizationLevel.Function, "get", Route = "GetBuildChangesByBuildId/{buildId}")] HttpRequest req, ILogger logger, long buildId)
         {
-            InitService.Init();
+            FunctionsInitializationService.Initialize();
             return AzureFunctionExecutionContext.ExecuteAsync<IBuildChangeDtoDataService>(
                 async service =>
                 {

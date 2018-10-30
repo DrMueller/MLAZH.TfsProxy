@@ -4,7 +4,7 @@ using Mmu.Mlazh.TfsProxy.Application.Builds.App.DtoModeling.Services;
 using Mmu.Mlh.ConsoleExtensions.Areas.Commands.Models;
 using Newtonsoft.Json;
 
-namespace Mmu.Mlazh.TfsProxy.TestConsole.Builds
+namespace Mmu.Mlazh.TfsProxy.TestConsole.ConsoleCommands.Builds
 {
     public class GetBuildChangesByBuildId : IConsoleCommand
     {

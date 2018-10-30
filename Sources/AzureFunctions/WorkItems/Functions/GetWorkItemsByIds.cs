@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Mmu.Mlazh.AzureApplicationExtensions.Areas.AzureFunctionExecution;
+using Mmu.Mlazh.AzureApplicationExtensions.Areas.AzureFunctions.Context;
 using Mmu.Mlazh.TfsProxy.Application.WorkItems.Areas.App.DtoModeling.Services;
 using Mmu.Mlazh.TfsProxy.AzureFunctions.Common;
 
@@ -19,11 +19,13 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.WorkItems.Functions
         [FunctionName("GetWorkItemsByIds")]
         public static Task<IActionResult> GetAsync([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequest req, ILogger logger)
         {
-            InitService.Init();
+            FunctionsInitializationService.Initialize();
+
             return AzureFunctionExecutionContext.ExecuteAsync<IWorkItemDtoDataService>(
-                async service =>
+                req,
+                async (service, httpRequestProxy) =>
                 {
-                    var workItemIds = req.Query["workitemIds"].First();
+                    var workItemIds = httpRequestProxy.QueryParameters["workItemIds"];
 
                     var workitemIdsSplitted = workItemIds
                         .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
