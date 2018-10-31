@@ -25,7 +25,6 @@ namespace Mmu.Mlazh.TfsProxy.DataAccess.WorkItems.Areas.DataModeling.Services.Wo
         public async Task<IReadOnlyCollection<NativeWorkItem>> LoadWorkItemsByIdsAsync(params int[] workItemIds)
         {
             var workItemList = string.Join(",", workItemIds);
-
             var resourcePath = $"_apis/wit/workitems?ids={workItemList}&$expand=relations";
             var str = await GetAsync(resourcePath);
             return _jsonWorkItemAdapter.AdaptWorkItems(str).Value;
