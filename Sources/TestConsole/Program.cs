@@ -18,9 +18,12 @@ namespace Mmu.Mlazh.TfsProxy.TestConsole
                 logInitialization: true);
 
             InitializationService.AssureServicesAreInitialized(containerConfig, DependenciesProvider.ProvideDependencencies);
-            InitializationService.AssureSettingsAreInitialized<AppSettings>(AppSettings.Sectionkey, currentAssembly);
+            InitializationService.AssureSettingsAreInitialized<AppSettings>(
+                AppSettings.Sectionkey,
+                string.Empty,
+                currentAssembly);
 
-           ServiceLocatorSingleton
+            ServiceLocatorSingleton
                 .Instance
                 .GetService<IConsoleCommandsStartupService>()
                 .Start();

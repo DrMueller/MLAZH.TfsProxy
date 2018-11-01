@@ -18,7 +18,10 @@ namespace Mmu.Mlazh.TfsProxy.AzureFunctions.Common
                 logInitialization: true);
 
             InitializationService.AssureServicesAreInitialized(containerConfig, DependenciesProvider.ProvideDependencencies);
-            InitializationService.AssureSettingsAreInitialized<AppSettings>(AppSettings.Sectionkey, _currentAssembly);
+            InitializationService.AssureSettingsAreInitialized<AppSettings>(
+                AppSettings.Sectionkey,
+                string.Empty,
+                _currentAssembly);
         }
     }
 }
