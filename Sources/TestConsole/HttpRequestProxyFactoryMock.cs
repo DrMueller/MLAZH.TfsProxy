@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Mmu.Mlazh.AzureApplicationExtensions.Areas.AzureFunctions.HttpRequestProxies.Models;
 using Mmu.Mlazh.AzureApplicationExtensions.Areas.AzureFunctions.HttpRequestProxies.Services;
 using Mmu.Mlazh.TfsProxy.Application.WorkItems.Areas.App.DtoModeling.Dtos;
+using Newtonsoft.Json;
 
 namespace Mmu.Mlazh.TfsProxy.TestConsole
 {
@@ -24,7 +25,8 @@ namespace Mmu.Mlazh.TfsProxy.TestConsole
                 }
             };
 
-            return new HttpRequestProxy(new QueryParameters(new Dictionary<string, string>()), dto);
+            var dtoString = JsonConvert.SerializeObject(dto);
+            return new HttpRequestProxy(new QueryParameters(new Dictionary<string, string>()), dtoString);
         }
     }
 }
